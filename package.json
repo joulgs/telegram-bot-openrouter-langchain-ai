@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --env-file .env --inspect --watch src/index.ts",
+    "langgraph:serve": "npx @langchain/langgraph-cli dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,10 +13,12 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@langchain/core": "^1.1.46",
     "@openrouter/sdk": "^0.12.35",
     "node-telegram-bot-api": "^0.67.0"
   },
   "devDependencies": {
+    "@langchain/langgraph-cli": "^1.2.1",
     "@types/node": "^25.7.0"
   }
 }
