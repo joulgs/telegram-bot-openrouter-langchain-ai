@@ -2,9 +2,7 @@ import { config } from './config.ts'
 import TelegramBot from 'node-telegram-bot-api'
 import { LLMService } from './LLMService.ts'
 
-const token = config.TELEGRAM_BOT_TOKEN 
-
-const bot = new TelegramBot(token, { polling: true })
+const bot = new TelegramBot(config.telegram.botToken, { polling: true })
 
 const llmService = new LLMService(config)
 
