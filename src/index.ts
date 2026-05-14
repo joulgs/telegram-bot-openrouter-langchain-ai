@@ -1,12 +1,11 @@
 import { config } from './config.ts'
-import TelegramBot from 'node-telegram-bot-api'
+import { TelegramBotService } from './services/TelegramBotService.ts'
 import { LLMService } from './services/LLMService.ts'
 
-const bot = new TelegramBot(config.telegram.botToken, { polling: true })
-
+const bot = new TelegramBotService(config)
 const llmService = new LLMService(config)
 
-bot.on('message', (msg: any) => {
+bot.onMessage((msg: any) => {
   const chatId = msg.chat.id
   const text = msg.text || ''
 
