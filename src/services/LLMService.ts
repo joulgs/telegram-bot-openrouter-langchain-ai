@@ -1,5 +1,5 @@
 import { OpenRouter } from "@openrouter/sdk/sdk/index.js"
-import { config } from "./config.ts"
+import { config } from "../config.ts"
 
 export class LLMService {
     private config
@@ -15,7 +15,7 @@ export class LLMService {
     }
 
     async generate(prompt: string) {
-        console.log('Generating response for prompt:', prompt)
+        console.log('🧠 Generating response for prompt:', prompt)
 
         const response = await this.client.chat.send({
             chatRequest: {
