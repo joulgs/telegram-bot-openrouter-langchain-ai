@@ -13,7 +13,7 @@ export class TelegramBotService {
             { polling: true }
         )
 
-        console.log('🤖 Telegram bot is running...')
+        console.log('\n🤖 Telegram bot is running...')
         return this
     }
 
