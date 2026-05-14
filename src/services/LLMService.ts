@@ -1,11 +1,11 @@
 import { OpenRouter } from "@openrouter/sdk/sdk/index.js"
-import { config } from "../config.ts"
+import { config, type ConfigType } from "../config.ts"
 
 export class LLMService {
-    private config
+    private config: ConfigType
     private client: OpenRouter
 
-    constructor(configOverride: any) {
+    constructor(configOverride: ConfigType) {
         this.config = configOverride ?? config
         
         this.client = new OpenRouter({

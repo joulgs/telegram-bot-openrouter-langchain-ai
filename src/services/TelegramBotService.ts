@@ -1,11 +1,11 @@
 import TelegramBot from 'node-telegram-bot-api'
-import { config } from '../config.ts'
+import { config, type ConfigType } from '../config.ts'
 
 export class TelegramBotService {
-    private config: any
+    private config: ConfigType
     private bot: TelegramBot
 
-    constructor(configOverride: any) {
+    constructor(configOverride: ConfigType) {
         this.config = configOverride ?? config
 
         this.bot = new TelegramBot(
