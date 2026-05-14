@@ -1,21 +1,22 @@
 import { config } from './config.ts'
 import { TelegramBotService } from './services/TelegramBotService.ts'
-import { LLMService } from './services/LLMService.ts'
+import { buildGraph } from './agent/factory.ts'
+import { HumanMessage } from '@langchain/core/messages'
 
 const bot = new TelegramBotService(config)
-const llmService = new LLMService(config)
+const graph = buildGraph()
 
-bot.onMessage((msg: any) => {
+bot.onMessage(async (msg: any) => {
   const chatId = msg.chat.id
   const text = msg.text || ''
 
   console.log(`\nReceived message from ${chatId}: ${text}`)
 
-  llmService.generate(text).then((response: any) => {
-    bot.sendMessage(chatId, response.content || 'Sorry, I couldn\'t generate a response.')
-  }).catch((error: any) => {
-    console.error('⚠️  Error generating response:', error)
+  const response = await graph.invoke({
+    messages: [new HumanMessage(text)],
   })
+  
+  bot.sendMessage(chatId, String(response.messages.at(-1)?.content))
 })
 
 console.log('\n☁️  Telegram IA Bot is ready to receive messages!\n')
